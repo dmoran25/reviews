@@ -1,5 +1,6 @@
 import streamlit as st
 
+# ---- FUNCTIONS ----
 def calculate_new_rating(current_rating, total_reviews, target_rating):
     """
     Calculates the number of 5-star reviews needed to reach the target rating.
@@ -20,23 +21,59 @@ def estimate_revenue_increase(new_reviews_needed, clv):
     estimated_revenue = new_reviews_needed * 100 * 0.05 * clv  # 100 views/month * 5% conversion * CLV
     return estimated_revenue
 
-# Streamlit UI
-st.title("📊 Google Reviews & Revenue Impact Calculator")
 
+# ---- STREAMLIT UI ----
+st.set_page_config(page_title="Google Reviews Impact Calculator", page_icon="⭐")
+
+# 🔥 Persuasive Header
+st.title("🚀 Google Reviews & Revenue Impact Calculator")
+st.subheader("See how improving your online reviews can boost your business revenue!")
+
+# 📌 Sidebar for Inputs
 st.sidebar.header("Step 1 of 2: Input Your Business Data")
 current_rating = st.sidebar.slider("⭐ Current Google Rating", 1.0, 5.0, 4.2, 0.1)
 total_reviews = st.sidebar.number_input("📌 Current Number of Google Reviews", min_value=1, value=100, step=1)
 target_rating = st.sidebar.slider("🎯 Desired Google Rating", 1.0, 5.0, 4.6, 0.1)
 clv = st.sidebar.number_input("💰 Lifetime Customer Value ($)", min_value=10, value=1000, step=10)
 
-# Calculations
+# 🧮 Calculations
 reviews_needed = calculate_new_rating(current_rating, total_reviews, target_rating)
 revenue_increase = estimate_revenue_increase(reviews_needed, clv)
 
-# Display results
-st.subheader("🔍 Review Growth Insights")
-st.write(f"⭐ **5-Star Reviews Needed to Reach {target_rating}:** {reviews_needed}")
-st.write(f"💰 **Estimated Monthly Revenue Increase:** ${revenue_increase:,.2f}")
-
+# 📊 Display results with better formatting
 st.markdown("---")
-st.markdown("💡 *Optimize your Google Business Profile and leverage reviews to drive more revenue!*")
+st.subheader("🔍 Review Growth Insights")
+
+col1, col2 = st.columns(2)
+col1.metric("⭐ Reviews Needed", f"{reviews_needed} more 5-stars", delta=f"+{reviews_needed}")
+col2.metric("💰 Estimated Revenue Increase", f"${revenue_increase:,.2f}")
+
+st.progress(min(reviews_needed / 100, 1.0))  # Simple progress bar for visuals
+
+# 🎯 Call-To-Action Section
+st.markdown("---")
+st.subheader("🔥 Take Action Today!")
+
+st.markdown(
+    """
+    - More **positive reviews** = **higher Google ranking**
+    - More **visibility & trust** = **more customers**
+    - More **customers** = **more revenue!**
+    """
+)
+st.success("Want to **start generating more 5-star reviews effortlessly?** Let's talk!")
+
+# 📩 Optional Email Capture for Follow-Ups
+email = st.text_input("📩 Enter your email for a FREE consultation on improving your reviews:", "")
+if email:
+    st.write(f"✅ Thank you! We’ll reach out to {email} soon with next steps.")
+
+# 🏆 Social Proof / Testimonials (Add your own)
+st.markdown("---")
+st.subheader("💡 Success Stories")
+st.write("📈 Businesses that improved their Google rating saw up to **30% more revenue**.")
+st.write("💬 *'Our revenue increased by $10K/month after just 3 months of improving reviews!'* – [Business Name]")
+
+# 🔗 Add a call-to-action button
+if st.button("🚀 Get Help Improving Your Reviews Now"):
+    st.write("✅ We'll contact you shortly to help boost your Google presence!")
