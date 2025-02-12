@@ -84,4 +84,24 @@ st.markdown(
 st.success("Want to **start generating more 5-star reviews effortlessly?** Let's talk!")
 
 # 📩 Optional Email Capture for Follow-Ups
-email =
+email = st.text_input("📩 Enter your email for a FREE consultation on improving your reviews:", "")
+if email:
+    st.write(f"✅ Thank you! We’ll reach out to {email} soon with next steps.")
+
+# 🏆 Social Proof / Testimonials (Add your own)
+st.markdown("---")
+st.subheader("💡 Success Stories")
+st.write("📈 Businesses that improved their Google rating saw up to **30% more revenue**.")
+st.write("💬 *'Our revenue increased by $10K/month after just 3 months of improving reviews!'* – [Business Name]")
+
+# 🔗 Clickable CTA Button to Your TidyCal Booking Page
+st.markdown(
+    """
+    <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
+        <button style="background-color:#28a745; border:none; color:white; padding:10px 20px;
+        text-align:center; text-decoration:none; display:inline-block; font-size:16px;
+        margin:10px 2px; cursor:pointer; border-radius:5px;">🚀 Book a Free 30-Minute Strategy Call</button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
