@@ -23,7 +23,7 @@ def estimate_revenue_increase(new_reviews_needed, clv):
 
 
 # ---- STREAMLIT UI ----
-st.set_page_config(page_title="Google Reviews Impact Calculator", page_icon="⭐")
+st.set_page_config(page_title="Google Reviews Impact Calculator", page_icon="⭐", layout="centered")
 
 # 🔥 Persuasive Header
 st.title("🚀 Google Reviews & Revenue Impact Calculator")
@@ -44,15 +44,11 @@ revenue_increase = estimate_revenue_increase(reviews_needed, clv)
 st.markdown("---")
 st.subheader("🔍 Review Growth Insights")
 
-col1, col2 = st.columns(2)
-col1.metric(f"⭐ Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars", delta=f"+{reviews_needed}")
-col2.metric("💰 Estimated Monthly Revenue Increase", f"${revenue_increase:,.2f}")
+# 🚀 Mobile-Responsive Layout: Stacks on smaller screens
+st.metric(f"⭐ Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars")
+st.metric("💰 Estimated Monthly Revenue Increase", f"${revenue_increase:,.2f}")
 
-st.progress(min(reviews_needed / 100, 1.0))  # Simple progress bar for visuals
-
-# 📌 Explanation Behind the Calculation
-st.markdown("---")
-st.subheader("📈 How We Calculate Revenue Increase")
+st.markdown("### 📈 How We Calculate Revenue Increase")
 st.write(
     f"""
     - Each **new review** brings in **~100 more views per month**.
@@ -84,14 +80,17 @@ st.markdown(
     """
 )
 
-# 🔗 Clickable CTA Button to Your TidyCal Booking Page
+# 🔗 Clickable CTA Button (Mobile-Optimized)
 st.markdown(
     """
-    <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
-        <button style="background-color:#28a745; border:none; color:white; padding:12px 24px;
-        text-align:center; text-decoration:none; display:inline-block; font-size:18px;
-        margin:12px 2px; cursor:pointer; border-radius:6px;">📅 Book a Free 30-Minute Strategy Call</button>
-    </a>
+    <div style="text-align:center;">
+        <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
+            <button style="background-color:#28a745; border:none; color:white; padding:14px 28px;
+            text-align:center; text-decoration:none; display:inline-block; font-size:20px;
+            margin:12px 2px; cursor:pointer; border-radius:8px; width:90%;">
+            📅 Book a Free 30-Minute Strategy Call</button>
+        </a>
+    </div>
     """,
     unsafe_allow_html=True
 )
