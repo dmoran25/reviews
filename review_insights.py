@@ -76,20 +76,21 @@ st.markdown(
     - To reach **{target_rating} stars**, you need **{reviews_needed} more 5-star reviews**.
     - Each **new review** brings in **~50 more views per month**.
     - **2% of those views** (1 out of every 50 people) will take action (call, visit, book, or buy).
-    - If your **average customer lifetime value is ${clv}**, then every **new review** contributes to measurable revenue growth.
+    - If your **average customer lifetime value is** **${clv}**, then every **new review** contributes to measurable revenue growth.
     """
 )
 
 # 📌 Results Using Your Input Section
+st.markdown("---")
+st.subheader("📊 Results Using Your Input")
 st.markdown(
     f"""
-    - **{reviews_needed} more 5-star reviews** → Generates **{new_views:,} new views per month**.  
+    - **{reviews_needed} more 5-star reviews** → Generates **{new_views:,.0f} new views per month**.  
     - **2% conversion rate** → Leads to **{new_customers:,.0f} new paying customers**.  
     - **At ${clv} per customer** → You could add **${revenue_increase:,.2f}** in monthly revenue.
     """,
     unsafe_allow_html=True
 )
-
 
 # 🎯 Call-To-Action Section
 st.markdown("---")
