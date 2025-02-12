@@ -48,16 +48,27 @@ clv = st.sidebar.number_input("💰 Customer Lifetime Value ($)", min_value=10, 
 reviews_needed = calculate_new_rating(current_rating, total_reviews, target_rating)
 revenue_increase = estimate_revenue_increase(reviews_needed, clv)
 
-# 📊 Display results
+# 📊 Display results with a two-column layout
 st.markdown("---")
 st.subheader("📊 Results")
 
-# Mobile-Responsive Layout: Stacks on smaller screens
-st.metric(f"⭐ Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars")
-st.metric("💰 Estimated Monthly Revenue Increase if you achieve the reviews needed", f"${revenue_increase:,.2f}")
+col1, col2 = st.columns(2)
+col1.metric(f"⭐ Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars")
+col2.metric("💰 Estimated Monthly Revenue Increase", f"${revenue_increase:,.2f}")
+
+# Revenue explanation below the metric
+st.markdown(
+    f"""
+    <p style="text-align: center; font-size: 16px; color: gray;">
+    Increase if you achieve the reviews needed.
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 
 # 📌 Example Explanation (Uses User's Input)
-st.markdown("### How This is Calculated")
+st.markdown("---")
+st.subheader("📊 Results Using Your Input")
 st.write(
     f"""
     - To reach **{target_rating} stars**, you need **{reviews_needed} more 5-star reviews**.
@@ -65,7 +76,7 @@ st.write(
     - **2% of those views** (1 out of every 50 people) will take action (call, visit, book, or buy).
     - If your average customer lifetime value is **${clv}**, then every **new review** contributes to measurable revenue growth.
 
-    **Example using your input:**  
+    **Results Using Your Input:**  
     - **{reviews_needed} more 5-star reviews** → Generates **{reviews_needed * 50:,} new views per month**.  
     - **2% conversion rate** → Leads to **{reviews_needed * 50 * 0.02:,.0f} new paying customers**.  
     - **At ${clv} per customer** → You could add **${revenue_increase:,.2f} in monthly revenue**.
