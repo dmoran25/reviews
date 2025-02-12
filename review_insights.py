@@ -87,7 +87,7 @@ st.markdown(
     f"""
     - **{reviews_needed} more 5-star reviews** → Generates **{new_views:,.0f} new views per month**.  
     - **2% conversion rate** → Leads to **{new_customers:,.0f} new paying customers**.  
-    - **At ${clv} per customer** → You could add **${revenue_increase:,.2f}** in monthly revenue.
+    - **At** ${clv} **per customer** → You could add **${revenue_increase:,.2f}** in monthly revenue.
     """,
     unsafe_allow_html=True
 )
