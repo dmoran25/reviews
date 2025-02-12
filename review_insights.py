@@ -96,4 +96,11 @@ st.markdown(
         <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
             <button style="background-color:#28a745; border:none; color:white; padding:14px 28px;
             text-align:center; text-decoration:none; display:inline-block; font-size:18px;
-            margin:12px 2
+            margin:12px 2px; cursor:pointer; border-radius:8px; width:90%;">
+            📅 Book a 30-Minute Reputation Growth Session – $40
+            </button>
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
