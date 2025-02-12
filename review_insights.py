@@ -47,6 +47,8 @@ clv = st.sidebar.number_input("💰 Customer Lifetime Value ($)", min_value=10, 
 # 🧮 Calculations
 reviews_needed = calculate_new_rating(current_rating, total_reviews, target_rating)
 revenue_increase = estimate_revenue_increase(reviews_needed, clv)
+new_views = reviews_needed * 50
+new_customers = reviews_needed * 50 * 0.02
 
 # 📊 Display results with a two-column layout
 st.markdown("---")
@@ -66,21 +68,28 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 Example Explanation (Uses User's Input)
+# 📌 How It Is Calculated Section
 st.markdown("---")
-st.subheader("📊 Results Using Your Input")
-st.write(
+st.subheader("📊 How It Is Calculated")
+st.markdown(
     f"""
     - To reach **{target_rating} stars**, you need **{reviews_needed} more 5-star reviews**.
     - Each **new review** brings in **~50 more views per month**.
     - **2% of those views** (1 out of every 50 people) will take action (call, visit, book, or buy).
-    - If your average customer lifetime value is **${clv}**, then every **new review** contributes to measurable revenue growth.
-
-    **Results Using Your Input:**  
-    - **{reviews_needed} more 5-star reviews** → Generates **{reviews_needed * 50:,} new views per month**.  
-    - **2% conversion rate** → Leads to **{reviews_needed * 50 * 0.02:,.0f} new paying customers**.  
-    - **At ${clv} per customer** → You could add **${revenue_increase:,.2f} in monthly revenue**.
+    - If your **average customer lifetime value is ${clv}**, then every **new review** contributes to measurable revenue growth.
     """
+)
+
+# 📌 Results Using Your Input Section
+st.markdown("---")
+st.subheader("📊 Results Using Your Input")
+st.markdown(
+    f"""
+    - **{reviews_needed} more 5-star reviews** → Generates **{new_views:,} new views per month**.  
+    - **2% conversion rate** → Leads to **{new_customers:,.0f} new paying customers**.  
+    - **At ${clv} per customer** → You could add **${revenue_increase:,.2f} in monthly revenue**.
+    """,
+    unsafe_allow_html=True
 )
 
 # 🎯 Call-To-Action Section
