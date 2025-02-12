@@ -25,46 +25,52 @@ def estimate_revenue_increase(new_reviews_needed, clv):
 # ---- STREAMLIT UI ----
 st.set_page_config(page_title="Review Impact Calculator", page_icon="⭐", layout="centered")
 
-# Title (smaller size for cleaner look)
-st.markdown("<h2 style='text-align: center;'>Review Impact Calculator</h2>", unsafe_allow_html=True)
+# Title (smaller for cleaner look)
+st.markdown("<h2 style='text-align: center;'>⭐ Review Impact Calculator</h2>", unsafe_allow_html=True)
 
-# Instructions for the user
+# Instructions
 st.markdown(
     """
-    Enter your current Google rating, number of reviews, and target rating.  
-    Adjust your customer lifetime value to see how increasing your rating impacts your revenue.
+    🔹 Enter your **current Google rating**, **number of reviews**, and **target rating**.  
+    🔹 Adjust your **customer lifetime value** to see how increasing your rating impacts revenue.  
     """,
     unsafe_allow_html=True
 )
 
 # 📌 Sidebar for Inputs
-st.sidebar.header("Enter Your Business Data")
-current_rating = st.sidebar.slider("Current Google Rating", 1.0, 5.0, 4.00, 0.01)
-total_reviews = st.sidebar.number_input("Current Number of Google Reviews", min_value=1, value=50, step=1)
-target_rating = st.sidebar.slider("Desired Google Rating", 1.0, 5.0, 4.6, 0.01)
-clv = st.sidebar.number_input("Customer Lifetime Value ($)", min_value=10, value=100, step=10)
+st.sidebar.header("🔢 Enter Your Business Data")
+current_rating = st.sidebar.slider("⭐ Current Google Rating", 1.0, 5.0, 4.00, 0.01)
+total_reviews = st.sidebar.number_input("📌 Current Number of Google Reviews", min_value=1, value=50, step=1)
+target_rating = st.sidebar.slider("🎯 Desired Google Rating", 1.0, 5.0, 4.6, 0.01)
+clv = st.sidebar.number_input("💰 Customer Lifetime Value ($)", min_value=10, value=100, step=10)
 
 # 🧮 Calculations
 reviews_needed = calculate_new_rating(current_rating, total_reviews, target_rating)
 revenue_increase = estimate_revenue_increase(reviews_needed, clv)
 
-# 📊 Display results with better formatting
+# 📊 Display results
 st.markdown("---")
-st.subheader("Results")
+st.subheader("📊 Results")
 
-# 🚀 Mobile-Responsive Layout: Stacks on smaller screens
-st.metric(f"Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars")
-st.metric("Estimated Monthly Revenue Increase", f"${revenue_increase:,.2f}")
+# Mobile-Responsive Layout: Stacks on smaller screens
+st.metric(f"⭐ Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars")
+st.metric("💰 Estimated Monthly Revenue Increase", f"${revenue_increase:,.2f}")
 
 # 🎯 Call-To-Action Section
 st.markdown("---")
-st.subheader("Want to Improve Your Reviews?")
+st.subheader("🚀 Want to Increase Your Google Rating?")
 
 st.markdown(
     """
-    More 5-star reviews can boost your visibility, increase customer trust, and grow your revenue.  
-    Get expert guidance on how to **increase your rating and maximize revenue.**
-    """
+    📈 More **5-star reviews** = More **visibility**, More **trust**, and More **customers**.  
+    🔥 Get **expert guidance** to improve your online reputation and **maximize revenue**.
+    
+    **Book a 30-minute session for $40 USD** and learn:  
+    ✅ How to **get more 5-star reviews efficiently**  
+    ✅ How to **handle negative reviews** without hurting your business  
+    ✅ How to **optimize your Google Business Profile** for better rankings  
+    """,
+    unsafe_allow_html=True
 )
 
 # 🔗 Clickable CTA Button (Mobile-Optimized)
@@ -75,7 +81,7 @@ st.markdown(
             <button style="background-color:#28a745; border:none; color:white; padding:14px 28px;
             text-align:center; text-decoration:none; display:inline-block; font-size:18px;
             margin:12px 2px; cursor:pointer; border-radius:8px; width:90%;">
-            Get a Free Review Growth Strategy
+            📅 Book a 30-Minute Reputation Growth Session – $40
             </button>
         </a>
     </div>
