@@ -54,7 +54,23 @@ st.subheader("📊 Results")
 
 # Mobile-Responsive Layout: Stacks on smaller screens
 st.metric(f"⭐ Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars")
-st.metric("💰 Estimated Monthly Revenue Increase", f"${revenue_increase:,.2f}")
+st.metric("💰 Estimated Monthly Revenue Increase if you achieve the reviews needed", f"${revenue_increase:,.2f}")
+
+# 📌 Example Explanation (Uses User's Input)
+st.markdown("### How This is Calculated")
+st.write(
+    f"""
+    - To reach **{target_rating} stars**, you need **{reviews_needed} more 5-star reviews**.
+    - Each **new review** brings in **~100 more views per month**.
+    - **2% of those views** (2 out of every 100 people) will take action (call, visit, book, or buy).
+    - If your average customer lifetime value is **${clv}**, then every **new review** contributes to measurable revenue growth.
+
+    **Example using your input:**  
+    - **{reviews_needed} more 5-star reviews** → Generates **{reviews_needed * 100:,} new views per month**.  
+    - **2% conversion rate** → Leads to **{reviews_needed * 100 * 0.02:,.0f} new paying customers**.  
+    - **At ${clv} per customer** → You could add **${revenue_increase:,.2f} in monthly revenue**.
+    """
+)
 
 # 🎯 Call-To-Action Section
 st.markdown("---")
@@ -80,11 +96,4 @@ st.markdown(
         <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
             <button style="background-color:#28a745; border:none; color:white; padding:14px 28px;
             text-align:center; text-decoration:none; display:inline-block; font-size:18px;
-            margin:12px 2px; cursor:pointer; border-radius:8px; width:90%;">
-            📅 Book a 30-Minute Reputation Growth Session – $40
-            </button>
-        </a>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+            margin:12px 2
