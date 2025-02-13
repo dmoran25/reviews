@@ -122,7 +122,5 @@ if st.session_state.submitted:
     if st.button("🔄 Recalculate Your Revenue Potential"):
         st.session_state.submitted = False
         st.rerun()
-
-  ,
         unsafe_allow_html=True
     )
