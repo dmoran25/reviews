@@ -11,7 +11,7 @@ if "submitted" not in st.session_state:
 if not st.session_state.submitted:
     st.markdown(
         """
-        <div style="background-color: #222452; padding: 20px; border-radius: 8px; text-align: center;">
+        <div style="background-color: #08bf81; padding: 20px; border-radius: 8px; text-align: center;">
             <h2 style="color: #FFFFFF; font-weight: bold;">⭐ Star Rating Calculator</h2>
         </div>
         """,
@@ -34,20 +34,27 @@ if not st.session_state.submitted:
         target_rating = st.number_input("Desired Google Rating", min_value=1.0, max_value=5.0, value=4.6, step=0.01)
         clv = st.number_input("Customer Lifetime Value ($)", min_value=10, value=100, step=10)
 
-        # Bigger Calculate Button (Styled)
+        # Centered & Bigger Calculate Button (Styled)
         st.markdown(
             """
             <style>
+                .calculate-button {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
+                }
                 div.stButton > button:first-child {
-                    background-color: #222452;
+                    background-color: #08bf81;
                     color: white;
-                    padding: 16px 28px;
-                    border-radius: 8px;
-                    font-size: 20px;
+                    padding: 18px 40px;
+                    border-radius: 10px;
+                    font-size: 22px;
+                    font-weight: bold;
                     width: 100%;
+                    text-align: center;
                 }
                 div.stButton > button:first-child:hover {
-                    background-color: #1a1f3c;
+                    background-color: #06a56f;
                 }
             </style>
             """,
@@ -115,10 +122,30 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔄 Calculate Again Button
-    if st.button("🔄 Calculate Again"):
-        st.session_state.submitted = False
-        st.rerun()
+    # 🔄 Calculate Again Button (Centered & Styled)
+    st.markdown(
+        """
+        <div class="calculate-button">
+            <form action="">
+                <button type="submit" style="
+                    background-color: #08bf81;
+                    color: white;
+                    padding: 18px 40px;
+                    border-radius: 10px;
+                    font-size: 22px;
+                    font-weight: bold;
+                    border: none;
+                    width: 100%;
+                    cursor: pointer;
+                    text-align: center;
+                    margin-top: 20px;">
+                    🔄 Calculate Again
+                </button>
+            </form>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     # 🎯 Call-To-Action Section
     st.markdown("---")
@@ -142,9 +169,10 @@ if st.session_state.submitted:
         """
         <div style="text-align:center;">
             <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
-                <button style="background-color:#28a745; border:none; color:white; padding:14px 28px;
-                text-align:center; text-decoration:none; display:inline-block; font-size:18px;
-                margin:12px 2px; cursor:pointer; border-radius:8px; width:90%;">
+                <button style="background-color:#08bf81; border:none; color:white; padding:18px 40px;
+                text-align:center; text-decoration:none; display:inline-block; font-size:22px;
+                font-weight: bold;
+                margin:12px 2px; cursor:pointer; border-radius:10px; width:100%;">
                 📅 Book a 30-Minute Reputation Growth Session – $40
                 </button>
             </a>
