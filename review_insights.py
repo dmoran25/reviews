@@ -38,7 +38,7 @@ if not st.session_state.submitted:
         st.markdown(
             """
             <style>
-                .calculate-button {
+                .calculate-button-container {
                     display: flex;
                     justify-content: center;
                     margin-top: 20px;
@@ -46,9 +46,9 @@ if not st.session_state.submitted:
                 div.stButton > button:first-child {
                     background-color: #08bf81;
                     color: white;
-                    padding: 18px 40px;
-                    border-radius: 10px;
-                    font-size: 22px;
+                    padding: 20px 50px;
+                    border-radius: 12px;
+                    font-size: 24px;
                     font-weight: bold;
                     width: 100%;
                     text-align: center;
@@ -57,6 +57,7 @@ if not st.session_state.submitted:
                     background-color: #06a56f;
                 }
             </style>
+            <div class="calculate-button-container">
             """,
             unsafe_allow_html=True
         )
@@ -125,14 +126,14 @@ if st.session_state.submitted:
     # 🔄 Calculate Again Button (Centered & Styled)
     st.markdown(
         """
-        <div class="calculate-button">
+        <div class="calculate-button-container">
             <form action="">
                 <button type="submit" style="
                     background-color: #08bf81;
                     color: white;
-                    padding: 18px 40px;
-                    border-radius: 10px;
-                    font-size: 22px;
+                    padding: 20px 50px;
+                    border-radius: 12px;
+                    font-size: 24px;
                     font-weight: bold;
                     border: none;
                     width: 100%;
@@ -169,10 +170,10 @@ if st.session_state.submitted:
         """
         <div style="text-align:center;">
             <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
-                <button style="background-color:#08bf81; border:none; color:white; padding:18px 40px;
-                text-align:center; text-decoration:none; display:inline-block; font-size:22px;
+                <button style="background-color:#08bf81; border:none; color:white; padding:20px 50px;
+                text-align:center; text-decoration:none; display:inline-block; font-size:24px;
                 font-weight: bold;
-                margin:12px 2px; cursor:pointer; border-radius:10px; width:100%;">
+                margin:12px 2px; cursor:pointer; border-radius:12px; width:100%;">
                 📅 Book a 30-Minute Reputation Growth Session – $40
                 </button>
             </a>
