@@ -22,6 +22,11 @@ if is_embedded:
 if "submitted" not in st.session_state:
     st.session_state.submitted = False
 
+# Function to Reset the State (Fixes the Recalculate Button)
+def reset_calculator():
+    st.session_state.submitted = False
+    st.experimental_rerun()
+
 # Show title only if form has NOT been submitted
 if not st.session_state.submitted:
     st.markdown(
@@ -118,12 +123,12 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔄 Recalculate Button (Styled to Match)
+    # 🔄 Fixed Recalculate Button
     st.markdown(
         """
         <div style="text-align:center;">
             <button onclick="window.location.reload();" 
-                class="calculate-button">
+                class="calculate-button" onclick="reset_calculator()">
                 🔄 Recalculate Your Revenue Potential
             </button>
         </div>
@@ -160,3 +165,6 @@ if st.session_state.submitted:
         """,
         unsafe_allow_html=True
     )
+
+    # **Fixes "Recalculate" button to properly reset the form**
+    st.button("🔄 Recalculate Your Revenue Potential", on_click=reset_calculator)
