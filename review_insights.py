@@ -3,26 +3,16 @@ import streamlit as st
 # ---- STREAMLIT UI ----
 st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", layout="centered")
 
-# ---- Hide Streamlit Branding, Footer, and Unwanted UI ----
+# ---- Hide Streamlit Branding, Footer, and Main Menu ----
 hide_streamlit_style = """
     <style>
-        /* Hide the "Made with Streamlit" Footer */
-        footer {visibility: hidden;}
-        
-        /* Remove 'Streamlit is running' watermark */
-        .viewerBadge_container__1QSob {display: none !important;}
-        
-        /* Hide the Streamlit Hamburger Menu */
-        #MainMenu {visibility: hidden;}
-
-        /* Hide Streamlit Header (only if needed) */
-        header {visibility: hidden;}
-
-        /* Additional selector to remove Streamlit footer completely */
-        .st-emotion-cache-16idsys {display: none !important;}
+        #MainMenu {visibility: hidden;} /* Hides Streamlit's menu */
+        footer {visibility: hidden;} /* Hides the "Made with Streamlit" footer */
+        .viewerBadge_container__1QSob {display: none !important;} /* Removes extra Streamlit watermark */
     </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
 
 # Detect if the app is embedded in an iframe
