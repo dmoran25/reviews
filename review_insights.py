@@ -1,7 +1,7 @@
 import streamlit as st
 
 # ---- STREAMLIT UI ----
-st.set_page_config(page_title="Star Rating Calculator", page_icon="⭐", layout="centered")
+st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", layout="centered")
 
 # Session State for Managing Visibility
 if "submitted" not in st.session_state:
@@ -12,7 +12,7 @@ if not st.session_state.submitted:
     st.markdown(
         """
         <div style="background-color: #08bf81; padding: 20px; border-radius: 8px; text-align: center;">
-            <h2 style="color: #FFFFFF; font-weight: bold;">⭐ Star Rating Calculator</h2>
+            <h2 style="color: #FFFFFF; font-weight: bold;">💰 Revenue Impact Calculator</h2>
         </div>
         """,
         unsafe_allow_html=True
@@ -20,7 +20,8 @@ if not st.session_state.submitted:
 
     st.markdown(
         """
-        **Calculate how many 5-star Google reviews your business needs to improve your rating and see the impact these reviews will have on your revenue.**
+        **See how increasing your 5-star Google reviews can drive more revenue for your business.**  
+        Find out how many reviews you need and how much additional revenue you could generate.
         """,
         unsafe_allow_html=True
     )
@@ -57,12 +58,11 @@ if not st.session_state.submitted:
                     background-color: #06a56f;
                 }
             </style>
-            <div class="calculate-button-container">
             """,
             unsafe_allow_html=True
         )
 
-        submitted = st.form_submit_button("Calculate my rating")
+        submitted = st.form_submit_button("Calculate Revenue Impact")
 
         if submitted:
             st.session_state.submitted = True
@@ -104,7 +104,7 @@ if st.session_state.submitted:
         <div style="background-color: #EFF8F0; padding: 16px; border-radius: 8px; text-align: center;">
             <h4 style="color: #28a745;">Your Results</h4>
             <h1 style="font-size: 72px; font-weight: bold;">{reviews_needed}</h1>
-            <p style="font-size: 20px; color: #555;">5-star reviews needed to achieve a <strong>{st.session_state.target_rating}</strong> star rating.</p>
+            <p style="font-size: 20px; color: #555;">More 5-star reviews needed to reach <strong>{st.session_state.target_rating}</strong> stars.</p>
         </div>
         """,
         unsafe_allow_html=True
@@ -115,22 +115,22 @@ if st.session_state.submitted:
     st.markdown(
         f"""
         <div style="background-color: #FFF3CD; padding: 16px; border-radius: 8px; text-align: center;">
-            <h4 style="color: #D39E00;">Revenue Impact</h4>
+            <h4 style="color: #D39E00;">Estimated Revenue Growth</h4>
             <h1 style="font-size: 72px; font-weight: bold;">${revenue_increase:,.2f}</h1>
-            <p style="font-size: 20px; color: #555;">Estimated monthly revenue increase.</p>
+            <p style="font-size: 20px; color: #555;">Potential additional monthly revenue.</p>
         </div>
         """,
         unsafe_allow_html=True
     )
 
     # 🔄 Calculate Again Button (Centered & Styled)
-    if st.button("🔄 Calculate Again"):
+    if st.button("🔄 Recalculate Your Revenue Potential"):
         st.session_state.submitted = False
         st.rerun()
 
     # 🎯 Call-To-Action Section
     st.markdown("---")
-    st.subheader("🚀 Want a Custom Plan to Increase Your Google Ranking?")
+    st.subheader("🚀 Want a Custom Plan to Maximize Your Revenue?")
 
     st.markdown(
         """
