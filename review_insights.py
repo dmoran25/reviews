@@ -1,23 +1,7 @@
 import streamlit as st
 
-st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", layout="centered")
-
-# Allow iframe embedding (if Streamlit supports it)
-st.markdown(
-    """
-    <style>
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100vh;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # ---- STREAMLIT UI ----
-st.set_page_config(page_title="Review ROI Calculator", page_icon="💰", layout="centered")
+st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", layout="centered")
 
 # Session State for Managing Visibility
 if "submitted" not in st.session_state:
@@ -139,7 +123,7 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔄 Calculate Again Button (Centered & Styled)
+    # 🔄 Calculate Again Button
     if st.button("🔄 Recalculate Your Revenue Potential"):
         st.session_state.submitted = False
         st.rerun()
@@ -160,7 +144,7 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔗 Clickable CTA Button (Mobile-Optimized)
+    # 🔗 Clickable CTA Button (Opens in New Tab)
     st.markdown(
         """
         <div style="text-align:center;">
