@@ -118,7 +118,7 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔄 Fixed Recalculate Button
+    # 🔄 Recalculate Button
     if st.button("🔄 Recalculate Your Revenue Potential"):
         st.session_state.submitted = False
         st.rerun()
@@ -139,12 +139,14 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔗 Clickable CTA Button
+    # 📅 BIG CTA BUTTON (with correct green color & font size)
     st.markdown(
         """
         <div style="text-align:center;">
             <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
-                <button class="calculate-button">
+                <button style="background-color:#08bf81; border:none; color:white; padding:24px 50px;
+                text-align:center; text-decoration:none; display:inline-block; font-size:24px;
+                font-weight: bold; margin:20px auto; cursor:pointer; border-radius:8px; width:100%;">
                 📅 Book Your $40 Strategy Session Now
                 </button>
             </a>
