@@ -1,21 +1,26 @@
 import streamlit as st
 
 # ---- STREAMLIT UI ----
-st.set_page_config(page_title="Review Impact Calculator", page_icon="⭐", layout="centered")
+st.set_page_config(page_title="Star Rating Calculator", page_icon="⭐", layout="centered")
 
 # Session State for Managing Visibility
 if "submitted" not in st.session_state:
     st.session_state.submitted = False
 
-# Show title & instructions only if form has NOT been submitted
+# Show title & new description only if form has NOT been submitted
 if not st.session_state.submitted:
-    st.markdown("<h2 style='text-align: center;'>⭐ Review Impact Calculator</h2>", unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div style="background-color: #FFD54F; padding: 16px; border-radius: 8px; text-align: center;">
+            <h2 style="color: #000; font-weight: bold;">⭐ Star Rating Calculator</h2>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown(
         """
-        🔹 Enter your **current Google rating**, **number of reviews**, and **target rating**.  
-        🔹 Adjust your **customer lifetime value** to see how increasing your rating impacts revenue.  
-        🔹 Click **"Calculate"** to generate your results.  
+        **Calculate how many 5-star Google reviews your business needs to improve your rating and see the impact these reviews will have on your revenue.**
         """,
         unsafe_allow_html=True
     )
@@ -23,10 +28,11 @@ if not st.session_state.submitted:
 # FORM: User enters data
 if not st.session_state.submitted:
     with st.form("review_calculator_form"):
-        current_rating = st.slider("⭐ Current Google Rating", 1.0, 5.0, 4.00, 0.01)
-        total_reviews = st.number_input("📌 Current Number of Google Reviews", min_value=1, value=50, step=1)
-        target_rating = st.slider("🎯 Desired Google Rating", 1.0, 5.0, 4.6, 0.01)
-        clv = st.number_input("💰 Customer Lifetime Value ($)", min_value=10, value=100, step=10)
+        st.markdown("### Step 1 of 2")
+        current_rating = st.number_input("Current Google Rating", min_value=1.0, max_value=5.0, value=4.0, step=0.01)
+        total_reviews = st.number_input("Current Number of Google Reviews", min_value=1, value=50, step=1)
+        target_rating = st.number_input("Desired Google Rating", min_value=1.0, max_value=5.0, value=4.6, step=0.01)
+        clv = st.number_input("Customer Lifetime Value ($)", min_value=10, value=100, step=10)
 
         # Submit Button
         submitted = st.form_submit_button("Calculate")
@@ -89,6 +95,11 @@ if st.session_state.submitted:
         """,
         unsafe_allow_html=True
     )
+
+    # 🔄 Calculate Again Button
+    if st.button("🔄 Calculate Again"):
+        st.session_state.submitted = False
+        st.rerun()
 
     # 🎯 Call-To-Action Section
     st.markdown("---")
