@@ -11,8 +11,8 @@ if "submitted" not in st.session_state:
 if not st.session_state.submitted:
     st.markdown(
         """
-        <div style="background-color: #FFD54F; padding: 16px; border-radius: 8px; text-align: center;">
-            <h2 style="color: #000; font-weight: bold;">⭐ Star Rating Calculator</h2>
+        <div style="background-color: #222452; padding: 20px; border-radius: 8px; text-align: center;">
+            <h2 style="color: #FFFFFF; font-weight: bold;">⭐ Star Rating Calculator</h2>
         </div>
         """,
         unsafe_allow_html=True
@@ -34,8 +34,27 @@ if not st.session_state.submitted:
         target_rating = st.number_input("Desired Google Rating", min_value=1.0, max_value=5.0, value=4.6, step=0.01)
         clv = st.number_input("Customer Lifetime Value ($)", min_value=10, value=100, step=10)
 
-        # Submit Button
-        submitted = st.form_submit_button("Calculate")
+        # Bigger Calculate Button (Styled)
+        st.markdown(
+            """
+            <style>
+                div.stButton > button:first-child {
+                    background-color: #222452;
+                    color: white;
+                    padding: 16px 28px;
+                    border-radius: 8px;
+                    font-size: 20px;
+                    width: 100%;
+                }
+                div.stButton > button:first-child:hover {
+                    background-color: #1a1f3c;
+                }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        submitted = st.form_submit_button("Calculate my rating")
 
         if submitted:
             st.session_state.submitted = True
