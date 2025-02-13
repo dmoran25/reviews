@@ -3,15 +3,15 @@ import streamlit as st
 # ---- STREAMLIT UI ----
 st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", layout="centered")
 
-# ---- Hide Streamlit Branding, Footer, and Main Menu ----
-hide_streamlit_style = """
-    <style>
-        #MainMenu {visibility: hidden;} /* Hides Streamlit's menu */
-        footer {visibility: hidden;} /* Hides the "Made with Streamlit" footer */
-        .viewerBadge_container__1QSob {display: none !important;} /* Removes extra Streamlit watermark */
-    </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+#----------------------Hide Streamlit footer----------------------------
+hide_st_style = “”"
+
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+“”"
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 
 
