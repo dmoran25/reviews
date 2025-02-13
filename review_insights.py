@@ -7,7 +7,7 @@ st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", lay
 hide_streamlit_style = """
     <style>
         [data-testid="stToolbar"] {visibility: hidden !important;} /* Hides the top toolbar */
-        footer {visibility: hidden !important;} /* Hides the "Made with Streamlit" footer */
+        footer {visibility: hidden !important;} /* Hides the "Hosted with Streamlit" footer */
         header {visibility: hidden !important;} /* Hides the Streamlit header */
         #MainMenu {visibility: hidden !important;} /* Hides the Streamlit menu */
         .viewerBadge_container__1QSob {display: none !important;} /* Removes Streamlit watermark */
