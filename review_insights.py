@@ -102,17 +102,66 @@ if st.session_state.submitted:
     reviews_needed = calculate_new_rating(st.session_state.current_rating, st.session_state.total_reviews, st.session_state.target_rating)
     revenue_increase = estimate_revenue_increase(reviews_needed, st.session_state.clv)
 
-    # 📊 Results Display
+    # 📊 Results Display (Formatted with Colors)
     st.markdown("---")
-    st.markdown(f"<h1 style='text-align:center; font-size:72px;'>{reviews_needed}</h1>", unsafe_allow_html=True)
-    st.markdown(f"<p style='text-align:center; font-size:20px;'>More 5-star reviews needed to reach {st.session_state.target_rating} stars.</p>", unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <div style="background-color: #EFF8F0; padding: 16px; border-radius: 8px; text-align: center;">
+            <h4 style="color: #28a745;">Your Results</h4>
+            <h1 style="font-size: 72px; font-weight: bold;">{reviews_needed}</h1>
+            <p style="font-size: 20px; color: #555;">More 5-star reviews needed to reach <strong>{st.session_state.target_rating}</strong> stars.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    # 📈 Revenue Impact
+    # 📈 Styled Revenue Impact
     st.markdown("---")
-    st.markdown(f"<h1 style='text-align:center; font-size:72px;'>${revenue_increase:,.2f}</h1>", unsafe_allow_html=True)
-    st.markdown(f"<p style='text-align:center; font-size:20px;'>Potential additional monthly revenue.</p>", unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <div style="background-color: #FFF3CD; padding: 16px; border-radius: 8px; text-align: center;">
+            <h4 style="color: #D39E00;">Estimated Revenue Growth</h4>
+            <h1 style="font-size: 72px; font-weight: bold;">${revenue_increase:,.2f}</h1>
+            <p style="font-size: 20px; color: #555;">Potential additional monthly revenue.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     # 🔄 Recalculate Button
     if st.button("🔄 Recalculate Your Revenue Potential"):
         st.session_state.submitted = False
         st.rerun()
+
+    # 🎯 Call-To-Action Section
+    st.markdown("---")
+    st.subheader("🚀 Want a Custom Plan to Maximize Your Revenue?")
+
+    st.markdown(
+        """
+        **Book a 30-minute strategy session for $40 USD and get:**  
+        
+        📍 **Google My Business Audit**: Find out what’s holding back your ranking and how to fix it.  
+        🔍 **Keyword Research**: Discover the top search terms potential clients are using.  
+        🗓 **90-Day Content Strategy**: A simple roadmap to attract more local clients.  
+        ⭐ **Review Growth Plan**: The easiest way to get more 5-star reviews—without awkward asks.  
+        """,
+        unsafe_allow_html=True
+    )
+
+    # 🔗 Clickable CTA Button
+    st.markdown(
+        """
+        <div style="text-align:center;">
+            <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
+                <button style="background-color:#08bf81; border:none; color:white; padding:20px 50px;
+                text-align:center; text-decoration:none; display:inline-block; font-size:24px;
+                font-weight: bold;
+                margin:12px 2px; cursor:pointer; border-radius:12px; width:100%;">
+                📅 Book Your $40 Strategy Session Now
+                </button>
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
