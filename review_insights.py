@@ -1,7 +1,7 @@
 import streamlit as st
 
 # ---- STREAMLIT UI ----
-st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", layout="centered")
+st.set_page_config(page_title="Review ROI Calculator", page_icon="💰", layout="centered")
 
 # Session State for Managing Visibility
 if "submitted" not in st.session_state:
