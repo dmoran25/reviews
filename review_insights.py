@@ -3,7 +3,7 @@ import streamlit as st
 # ---- STREAMLIT UI ----
 st.set_page_config(page_title="Review Impact Calculator", page_icon="⭐", layout="centered")
 
-# Title (smaller for cleaner look)
+# Page Title
 st.markdown("<h2 style='text-align: center;'>⭐ Review Impact Calculator</h2>", unsafe_allow_html=True)
 
 # Instructions
@@ -11,24 +11,36 @@ st.markdown(
     """
     🔹 Enter your **current Google rating**, **number of reviews**, and **target rating**.  
     🔹 Adjust your **customer lifetime value** to see how increasing your rating impacts revenue.  
-    🔹 Click the **"Calculate"** button to generate your results.  
+    🔹 Click **"Calculate"** to generate your results.  
     """,
     unsafe_allow_html=True
 )
 
-# 📌 FORM: Users input data before clicking "Calculate"
-with st.form("review_calculator_form"):
-    st.sidebar.header("🔢 Enter Your Business Data")
-    current_rating = st.slider("⭐ Current Google Rating", 1.0, 5.0, 4.00, 0.01)
-    total_reviews = st.number_input("📌 Current Number of Google Reviews", min_value=1, value=50, step=1)
-    target_rating = st.slider("🎯 Desired Google Rating", 1.0, 5.0, 4.6, 0.01)
-    clv = st.number_input("💰 Customer Lifetime Value ($)", min_value=10, value=100, step=10)
+# Session State for Managing Visibility
+if "submitted" not in st.session_state:
+    st.session_state.submitted = False
 
-    # Submit Button
-    submitted = st.form_submit_button("Calculate")
+# FORM: User enters data
+if not st.session_state.submitted:
+    with st.form("review_calculator_form"):
+        current_rating = st.slider("⭐ Current Google Rating", 1.0, 5.0, 4.00, 0.01)
+        total_reviews = st.number_input("📌 Current Number of Google Reviews", min_value=1, value=50, step=1)
+        target_rating = st.slider("🎯 Desired Google Rating", 1.0, 5.0, 4.6, 0.01)
+        clv = st.number_input("💰 Customer Lifetime Value ($)", min_value=10, value=100, step=10)
 
-# ---- PROCESS CALCULATIONS ONLY IF BUTTON IS CLICKED ----
-if submitted:
+        # Submit Button
+        submitted = st.form_submit_button("Calculate")
+
+        if submitted:
+            st.session_state.submitted = True
+            st.session_state.current_rating = current_rating
+            st.session_state.total_reviews = total_reviews
+            st.session_state.target_rating = target_rating
+            st.session_state.clv = clv
+            st.rerun()
+
+# Show results if submitted
+if st.session_state.submitted:
     def calculate_new_rating(current_rating, total_reviews, target_rating):
         """
         Calculates the number of 5-star reviews needed to reach the target rating.
@@ -48,29 +60,36 @@ if submitted:
         """
         return new_reviews_needed * 50 * 0.02 * clv  # 50 views/month * 2% conversion * CLV
 
-    # 🧮 Perform calculations
-    reviews_needed = calculate_new_rating(current_rating, total_reviews, target_rating)
-    revenue_increase = estimate_revenue_increase(reviews_needed, clv)
-    revenue_per_review = 50 * 0.02 * clv  # 50 views * 2% conversion * Customer Lifetime Value
+    # Retrieve stored values
+    reviews_needed = calculate_new_rating(st.session_state.current_rating, st.session_state.total_reviews, st.session_state.target_rating)
+    revenue_increase = estimate_revenue_increase(reviews_needed, st.session_state.clv)
+    revenue_per_review = 50 * 0.02 * st.session_state.clv  # 50 views * 2% conversion * Customer Lifetime Value
 
-    # 📊 Display results with a two-column layout
+    # 📊 Results Display
     st.markdown("---")
-    st.subheader("📊 Results")
-
-    col1, col2 = st.columns(2)
-    col1.metric(f"⭐ Reviews Needed to Get to {target_rating}", f"{reviews_needed} more 5-stars")
-    col2.metric("💰 Estimated Monthly Revenue Increase", f"${revenue_increase:,.2f}")
-
-    # 📌 How It Is Calculated Section
-    st.markdown("---")
-    st.subheader("📊 How It Is Calculated")
+    
     st.markdown(
         f"""
-        - To reach **{target_rating} stars**, you need **{reviews_needed} more 5-star reviews**.
-        - Each **new review** brings in **~50 more views per month**.
-        - **2% of those views** (1 out of every 50 people) will take action (call, visit, book, or buy).
-        - If your **average customer lifetime value is** **${clv}**, then **each new review contributes approximately** **${revenue_per_review:,.2f}** **in monthly revenue.**
-        """
+        <div style="background-color: #EFF8F0; padding: 16px; border-radius: 8px; text-align: center;">
+            <h4 style="color: #28a745;">Your Results</h4>
+            <h1 style="font-size: 72px; font-weight: bold;">{reviews_needed}</h1>
+            <p style="font-size: 20px; color: #555;">5-star reviews needed to achieve a <strong>{st.session_state.target_rating}</strong> star rating.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # 📈 Revenue Impact
+    st.markdown("---")
+    st.subheader("📊 Revenue Impact")
+    st.markdown(
+        f"""
+        - **Each new review generates ~50 additional views per month.**  
+        - **2% of those views convert into paying customers.**  
+        - **At ${st.session_state.clv} per customer, each new review adds approximately** **${revenue_per_review:,.2f}** **in monthly revenue.**  
+        - **Total potential monthly revenue increase: ${revenue_increase:,.2f}**  
+        """,
+        unsafe_allow_html=True
     )
 
     # 🎯 Call-To-Action Section
