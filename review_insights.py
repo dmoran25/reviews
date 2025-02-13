@@ -124,43 +124,22 @@ if st.session_state.submitted:
     )
 
     # 🔄 Calculate Again Button (Centered & Styled)
-    st.markdown(
-        """
-        <div class="calculate-button-container">
-            <form action="">
-                <button type="submit" style="
-                    background-color: #08bf81;
-                    color: white;
-                    padding: 20px 50px;
-                    border-radius: 12px;
-                    font-size: 24px;
-                    font-weight: bold;
-                    border: none;
-                    width: 100%;
-                    cursor: pointer;
-                    text-align: center;
-                    margin-top: 20px;">
-                    🔄 Calculate Again
-                </button>
-            </form>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    if st.button("🔄 Calculate Again"):
+        st.session_state.submitted = False
+        st.rerun()
 
     # 🎯 Call-To-Action Section
     st.markdown("---")
-    st.subheader("🚀 Want to Increase Your Google Rating?")
+    st.subheader("🚀 Want a Custom Plan to Increase Your Google Ranking?")
 
     st.markdown(
         """
-        📈 More **5-star reviews** = More **visibility**, More **trust**, and More **customers**.  
-        🔥 Get **expert guidance** to improve your online reputation and **maximize revenue**.
+        **Book a 30-minute strategy session for $40 USD and get:**  
         
-        **Book a 30-minute session for $40 USD** and learn:  
-        ✅ How to **get more 5-star reviews efficiently**  
-        ✅ How to **handle negative reviews** without hurting your business  
-        ✅ How to **optimize your Google Business Profile** for better rankings  
+        📍 **Google My Business Audit**: Find out what’s holding back your ranking and how to fix it.  
+        🔍 **Keyword Research**: Discover the top search terms potential clients are using.  
+        🗓 **90-Day Content Strategy**: A simple roadmap to attract more local clients.  
+        ⭐ **Review Growth Plan**: The easiest way to get more 5-star reviews—without awkward asks.  
         """,
         unsafe_allow_html=True
     )
@@ -174,7 +153,7 @@ if st.session_state.submitted:
                 text-align:center; text-decoration:none; display:inline-block; font-size:24px;
                 font-weight: bold;
                 margin:12px 2px; cursor:pointer; border-radius:12px; width:100%;">
-                📅 Book a 30-Minute Reputation Growth Session – $40
+                📅 Book Your $40 Strategy Session Now
                 </button>
             </a>
         </div>
