@@ -1,5 +1,21 @@
 import streamlit as st
 
+st.set_page_config(page_title="Revenue Impact Calculator", page_icon="💰", layout="centered")
+
+# Allow iframe embedding (if Streamlit supports it)
+st.markdown(
+    """
+    <style>
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # ---- STREAMLIT UI ----
 st.set_page_config(page_title="Review ROI Calculator", page_icon="💰", layout="centered")
 
