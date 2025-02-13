@@ -3,22 +3,22 @@ import streamlit as st
 # ---- STREAMLIT UI ----
 st.set_page_config(page_title="Review Impact Calculator", page_icon="⭐", layout="centered")
 
-# Page Title
-st.markdown("<h2 style='text-align: center;'>⭐ Review Impact Calculator</h2>", unsafe_allow_html=True)
-
-# Instructions
-st.markdown(
-    """
-    🔹 Enter your **current Google rating**, **number of reviews**, and **target rating**.  
-    🔹 Adjust your **customer lifetime value** to see how increasing your rating impacts revenue.  
-    🔹 Click **"Calculate"** to generate your results.  
-    """,
-    unsafe_allow_html=True
-)
-
 # Session State for Managing Visibility
 if "submitted" not in st.session_state:
     st.session_state.submitted = False
+
+# Show title & instructions only if form has NOT been submitted
+if not st.session_state.submitted:
+    st.markdown("<h2 style='text-align: center;'>⭐ Review Impact Calculator</h2>", unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        🔹 Enter your **current Google rating**, **number of reviews**, and **target rating**.  
+        🔹 Adjust your **customer lifetime value** to see how increasing your rating impacts revenue.  
+        🔹 Click **"Calculate"** to generate your results.  
+        """,
+        unsafe_allow_html=True
+    )
 
 # FORM: User enters data
 if not st.session_state.submitted:
@@ -63,11 +63,9 @@ if st.session_state.submitted:
     # Retrieve stored values
     reviews_needed = calculate_new_rating(st.session_state.current_rating, st.session_state.total_reviews, st.session_state.target_rating)
     revenue_increase = estimate_revenue_increase(reviews_needed, st.session_state.clv)
-    revenue_per_review = 50 * 0.02 * st.session_state.clv  # 50 views * 2% conversion * Customer Lifetime Value
 
-    # 📊 Results Display
+    # 📊 Results Display: Reviews Needed
     st.markdown("---")
-    
     st.markdown(
         f"""
         <div style="background-color: #EFF8F0; padding: 16px; border-radius: 8px; text-align: center;">
@@ -79,15 +77,15 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 📈 Revenue Impact
+    # 📈 Styled Revenue Impact
     st.markdown("---")
-    st.subheader("📊 Revenue Impact")
     st.markdown(
         f"""
-        - **Each new review generates ~50 additional views per month.**  
-        - **2% of those views convert into paying customers.**  
-        - **At ${st.session_state.clv} per customer, each new review adds approximately** **${revenue_per_review:,.2f}** **in monthly revenue.**  
-        - **Total potential monthly revenue increase: ${revenue_increase:,.2f}**  
+        <div style="background-color: #FFF3CD; padding: 16px; border-radius: 8px; text-align: center;">
+            <h4 style="color: #D39E00;">Revenue Impact</h4>
+            <h1 style="font-size: 72px; font-weight: bold;">${revenue_increase:,.2f}</h1>
+            <p style="font-size: 20px; color: #555;">Estimated monthly revenue increase.</p>
+        </div>
         """,
         unsafe_allow_html=True
     )
