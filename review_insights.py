@@ -22,7 +22,7 @@ if is_embedded:
 if "submitted" not in st.session_state:
     st.session_state.submitted = False
 
-# Show title & new description only if form has NOT been submitted
+# Show title only if form has NOT been submitted
 if not st.session_state.submitted:
     st.markdown(
         """
@@ -33,44 +33,33 @@ if not st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        """
-        **See how increasing your 5-star Google reviews can drive more revenue for your business.**  
-        Find out how many reviews you need and how much additional revenue you could generate.
-        """,
-        unsafe_allow_html=True
-    )
-
 # FORM: User enters data
 if not st.session_state.submitted:
     with st.form("review_calculator_form"):
-        st.markdown("### Step 1 of 2")
         current_rating = st.number_input("Current Google Rating", min_value=1.0, max_value=5.0, value=4.0, step=0.01)
         total_reviews = st.number_input("Current Number of Google Reviews", min_value=1, value=50, step=1)
         target_rating = st.number_input("Desired Google Rating", min_value=1.0, max_value=5.0, value=4.6, step=0.01)
         clv = st.number_input("Customer Lifetime Value ($)", min_value=10, value=100, step=10)
 
-        # Centered & Bigger Calculate Button (Styled)
+        # Styled Calculate Button (Matching Reference Image)
         st.markdown(
             """
             <style>
-                .calculate-button-container {
-                    display: flex;
-                    justify-content: center;
-                    margin-top: 20px;
-                }
                 div.stButton > button:first-child {
-                    background-color: #08bf81;
-                    color: white;
-                    padding: 20px 50px;
-                    border-radius: 12px;
-                    font-size: 24px;
-                    font-weight: bold;
-                    width: 100%;
-                    text-align: center;
+                    background-color: #6BCB4C !important;
+                    color: white !important;
+                    padding: 16px 40px !important;
+                    border-radius: 8px !important;
+                    font-size: 20px !important;
+                    font-weight: bold !important;
+                    text-align: center !important;
+                    border: none !important;
+                    width: 100% !important;
+                    display: block !important;
+                    margin: 20px auto !important;
                 }
                 div.stButton > button:first-child:hover {
-                    background-color: #06a56f;
+                    background-color: #5AAD3F !important;
                 }
             </style>
             """,
@@ -128,10 +117,20 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔄 Recalculate Button
-    if st.button("🔄 Recalculate Your Revenue Potential"):
-        st.session_state.submitted = False
-        st.rerun()
+    # 🔄 Recalculate Button (Same Style as "Calculate Revenue Impact" Button)
+    st.markdown(
+        """
+        <div style="text-align:center;">
+            <button onclick="window.location.reload();" 
+                style="background-color: #6BCB4C; color: white; padding: 16px 40px;
+                border-radius: 8px; font-size: 20px; font-weight: bold; text-align: center;
+                border: none; width: 100%; display: block; margin: 20px auto; cursor: pointer;">
+                🔄 Recalculate Your Revenue Potential
+            </button>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     # 🎯 Call-To-Action Section
     st.markdown("---")
@@ -154,10 +153,9 @@ if st.session_state.submitted:
         """
         <div style="text-align:center;">
             <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
-                <button style="background-color:#08bf81; border:none; color:white; padding:20px 50px;
-                text-align:center; text-decoration:none; display:inline-block; font-size:24px;
-                font-weight: bold;
-                margin:12px 2px; cursor:pointer; border-radius:12px; width:100%;">
+                <button style="background-color:#6BCB4C; border:none; color:white; padding:16px 40px;
+                text-align:center; text-decoration:none; display:inline-block; font-size:20px;
+                font-weight: bold; margin:20px auto; cursor:pointer; border-radius:8px; width:100%;">
                 📅 Book Your $40 Strategy Session Now
                 </button>
             </a>
