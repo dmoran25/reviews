@@ -123,34 +123,6 @@ if st.session_state.submitted:
         st.session_state.submitted = False
         st.rerun()
 
-    # 🎯 Call-To-Action Section
-    st.markdown("---")
-    st.subheader("🚀 Want a Custom Plan to Maximize Your Revenue?")
-
-    st.markdown(
-        """
-        **Book a 30-minute strategy session for $40 USD and get:**  
-        
-        📍 **Google My Business Audit**: Find out what’s holding back your ranking and how to fix it.  
-        🔍 **Keyword Research**: Discover the top search terms potential clients are using.  
-        🗓 **90-Day Content Strategy**: A simple roadmap to attract more local clients.  
-        ⭐ **Review Growth Plan**: The easiest way to get more 5-star reviews—without awkward asks.  
-        """,
-        unsafe_allow_html=True
-    )
-
-    # 📅 BIG CTA BUTTON (with correct green color & font size)
-    st.markdown(
-        """
-        <div style="text-align:center;">
-            <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
-                <button style="background-color:#08bf81; border:none; color:white; padding:24px 50px;
-                text-align:center; text-decoration:none; display:inline-block; font-size:24px;
-                font-weight: bold; margin:20px auto; cursor:pointer; border-radius:8px; width:100%;">
-                📅 Book Your $40 Strategy Session Now
-                </button>
-            </a>
-        </div>
-        """,
+  ,
         unsafe_allow_html=True
     )
