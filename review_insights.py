@@ -45,10 +45,10 @@ if not st.session_state.submitted:
         st.markdown(
             """
             <style>
-                div.stButton > button:first-child {
+                .calculate-button {
                     background-color: #6BCB4C !important;
                     color: white !important;
-                    padding: 16px 40px !important;
+                    padding: 18px 50px !important;
                     border-radius: 8px !important;
                     font-size: 20px !important;
                     font-weight: bold !important;
@@ -57,8 +57,9 @@ if not st.session_state.submitted:
                     width: 100% !important;
                     display: block !important;
                     margin: 20px auto !important;
+                    cursor: pointer !important;
                 }
-                div.stButton > button:first-child:hover {
+                .calculate-button:hover {
                     background-color: #5AAD3F !important;
                 }
             </style>
@@ -117,14 +118,12 @@ if st.session_state.submitted:
         unsafe_allow_html=True
     )
 
-    # 🔄 Recalculate Button (Same Style as "Calculate Revenue Impact" Button)
+    # 🔄 Recalculate Button (Styled to Match)
     st.markdown(
         """
         <div style="text-align:center;">
             <button onclick="window.location.reload();" 
-                style="background-color: #6BCB4C; color: white; padding: 16px 40px;
-                border-radius: 8px; font-size: 20px; font-weight: bold; text-align: center;
-                border: none; width: 100%; display: block; margin: 20px auto; cursor: pointer;">
+                class="calculate-button">
                 🔄 Recalculate Your Revenue Potential
             </button>
         </div>
@@ -153,9 +152,7 @@ if st.session_state.submitted:
         """
         <div style="text-align:center;">
             <a href="https://tidycal.com/m52nvnm/30-minute-meeting" target="_blank">
-                <button style="background-color:#6BCB4C; border:none; color:white; padding:16px 40px;
-                text-align:center; text-decoration:none; display:inline-block; font-size:20px;
-                font-weight: bold; margin:20px auto; cursor:pointer; border-radius:8px; width:100%;">
+                <button class="calculate-button">
                 📅 Book Your $40 Strategy Session Now
                 </button>
             </a>
